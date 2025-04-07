@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+        input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        label {
+            font-weight: bold;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align:center;">User Registration Form</h2>
+
+    <form onsubmit="return validateForm()">
+        <label>Name:</label>
+        <input type="text" id="name">
+
+        <label>Username:</label>
+        <input type="text" id="username">
+
+        <label>Password:</label>
+        <input type="password" id="password">
+
+        <label>Confirm Password:</label>
+        <input type="password" id="confirmPassword">
+
+        <label>Email:</label>
+        <input type="email" id="email">
+
+        <label>Year of Birth:</label>
+        <input type="number" id="yearOfBirth">
+
+        <label>
+            <input type="checkbox" id="terms"> I agree to the terms and conditions.
+        </label>
+
+        <br><br>
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const email = document.getElementById("email").value.trim();
+            const yearOfBirth = document.getElementById("yearOfBirth").value.trim();
+            const termsChecked = document.getElementById("terms").checked;
+
+            // Check for empty fields
+            if (!username || !password || !confirmPassword || !email || !yearOfBirth) {
+                alert("Please fill in all required fields.");
+                return false;
+            }
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            // Email format validation
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            // Year of Birth validation
+            if (!/^\d{4}$/.test(yearOfBirth) || yearOfBirth < 1900 || yearOfBirth > 2000) {
+                alert("Year of birth must be a 4-digit number between 1900 and 2000.");
+                return false;
+            }
+
+            // Check if terms checkbox is selected
+            if (!termsChecked) {
+                alert("You must agree to the terms and conditions.");
+                return false;
+            }
+
+            alert("Registration successful!");
+            return true;
+        }
+    </script>
+
+</body>
+</html>
 
