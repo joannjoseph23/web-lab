@@ -67,4 +67,37 @@ function collectAndSortNames() {
 // Example usage
 collectAndSortNames();
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Number Average</title>
+</head>
+<body>
+    <script>
+        // Ask the user for how many random numbers they want
+        let count = parseInt(prompt("How many random numbers do you want to generate?"));
+
+        // Validate input
+        if (isNaN(count) || count <= 0) {
+            alert("Please enter a valid positive number.");
+        } else {
+            let numbers = [];
+            let sum = 0;
+
+            // Generate random numbers and calculate sum
+            for (let i = 0; i < count; i++) {
+                let num = Math.floor(Math.random() * 100) + 1; // Random number between 1 and 100
+                numbers.push(num);
+                sum += num;
+            }
+
+            // Calculate average
+            let average = sum / count;
+
+            // Show results
+            alert(`Generated Numbers: ${numbers.join(", ")}\nAverage: ${average.toFixed(2)}`);
+        }
+    </script>
+</body>
+</html>
 
